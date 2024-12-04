@@ -1,0 +1,62 @@
+{% extends '../base.html' %}
+
+{% block navbar %}
+  
+<nav class="navbar navbar-expand-lg bg-primary text-white">
+  <div class="container-fluid">
+      <a class="navbar-brand text-white" href="/anuncio/">Listagem de Anúncios</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+          <div class="navbar-nav">
+              <a class="nav-link active text-white" aria-current="page" href="/camisa/novo/">Adicionar Camisas</a>
+              <a class="nav-link text-white" href="/logout/">Sair</a>
+              <!-- <a class="nav-link disabled" aria-disabled="true">Disabled</a>-->
+          </div>
+      </div>
+  </div>
+</nav>
+{% endblock %}
+
+{% block title %}Listagem{% endblock %}
+
+<!-- Testando o tamanho da lista de camisas -->
+<p>Total de camisas: {{ camisas|length }}</p>
+
+<!-- Testando a impressão de todos os camisas -->
+<pre>{{ camisas }}</pre>
+
+{% block list %}
+  <div class="div-lista">
+    
+    <div class="row">
+        <h3>Listando o(s) {{camisas|length}} camisa(s):</h3>
+      {% for v in camisas %}  <!-- camisas -->
+        <div class="card" style="width: 18rem; margin: 10px;">
+          {% if v.foto.url %}
+           <img class="card-img-top" src="{{ v.foto.url }}" alt="{{ v.time }}">
+          {% else  %}
+            <p>Sem foto disponível</p>
+          {% endif %}
+
+          <div class="card-body">
+            <h5 class="card-title">{{ v.time }} - {{ v.get_tipo_display }}</h5>
+            <p class="card-text">Marca: {{ v.get_marca_display }}</p>
+            <p class="card-text">Ano: {{v.ano}}</p>
+            <p class="card-text">Tamanho: {{ v.get_tamanho_display }}</p>
+            <a href="/camisa/{{v.id}}" class="btn btn-primary">Editar</a>
+            <a href="/camisa/deletar/{{v.id}}" class="btn btn-danger">Deletar</a>
+          </div>
+        </div>
+      {% empty %}
+        <p>Não há camisas disponíveis no momento.</p>
+      {% endfor %}
+    </div>
+  </div>
+{% endblock %}
+
+<!--{% block footer %}
+  {% include 'components/footer.html' %}
+{% endblock %}
+-->

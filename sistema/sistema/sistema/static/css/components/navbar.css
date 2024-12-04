@@ -1,0 +1,27 @@
+.navbar{
+    width: 100%;
+}
+.navbar-expand-lg .navbar-collapse {
+    display: flex !important;
+    flex-basis: auto;
+    justify-content: flex-end;
+}
+.container-fluid{
+    max-width: 1200px;
+}
+.navbar {
+    background-color: black !important; 
+    color: white !important; 
+    border-bottom: 2px solid #ffcc00; 
+}
+
+.navbar a {
+    color: white; 
+    text-decoration: none; 
+}
+
+.navbar a:hover {
+    color: #ffcc00; /* Cor ao passar o mouse */
+    opacity: 0.9; /* Leve transparência no hover */
+}
+
